@@ -48,6 +48,7 @@ class _QuillToolbarSelectLineHeightStyleDropdownButtonState
   Attribute<dynamic> _selectedItem = Attribute.lineHeight;
 
   final _menuController = MenuController();
+
   @override
   void initState() {
     super.initState();
@@ -97,9 +98,17 @@ class _QuillToolbarSelectLineHeightStyleDropdownButtonState
 
   String _label(Attribute<dynamic> attribute) {
     var label = LineHeightAttribute.lineHeightNormal.value.toString();
+
     if (attribute.value != null) {
       label = attribute.value.toString();
+    } else {
+      final defaultDisplayText = widget.options.defaultDisplayText;
+
+      if (defaultDisplayText != null && defaultDisplayText.isNotEmpty) {
+        label = defaultDisplayText;
+      }
     }
+
     return label;
   }
 
